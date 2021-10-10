@@ -10,7 +10,7 @@ const CartView = ({ cart }) => {
 
   const closeOrder = async () => {
     await axios
-      .put(`https://slowfood2021.herokuapp.com/api/carts?=125&finalized=true`)
+      .put(`https://desolate-beach-43985.herokuapp.com/api/carts?=125&finalized=true`)
       .then((response) => {
         setFinalizeOrder(response.data.cart.finalized);
         setResponseMessage(response.data.message);
