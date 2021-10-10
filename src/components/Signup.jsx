@@ -14,7 +14,7 @@ const Signup = () => {
     evt.preventDefault();
     axios({
       method: "post",
-      url: "https://slowfood.heroku.com/api/auth/",
+      url: "https://slowfood2021.heroku.com/api/auth/",
       params: {
         email: userEmail,
         password: userPassword,

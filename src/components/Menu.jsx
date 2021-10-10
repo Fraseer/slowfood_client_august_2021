@@ -13,7 +13,7 @@ const MenuPage = () => {
   const [viewCart, setViewCart] = useState();
 
   useEffect(() => {
-    axios.get("https://slowfood.heroku.com/api/products").then((response) => {
+    axios.get("https://slowfood2021.heroku.com/api/products").then((response) => {
       setMenuItems(response.data.products);
     });
   }, []);
@@ -24,7 +24,7 @@ const MenuPage = () => {
     try {
       const response = await axios({
         method: method,
-        url: "https://slowfood.heroku.com/api/carts",
+        url: "https://slowfood2021.heroku.com/api/carts",
         data: { product_id: itemId },
       });
       const responseMessage = response.data.message;
