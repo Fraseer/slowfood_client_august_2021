@@ -13,9 +13,11 @@ const MenuPage = () => {
   const [viewCart, setViewCart] = useState();
 
   useEffect(() => {
-    axios.get("https://desolate-beach-43985.herokuapp.com/api/products").then((response) => {
-      setMenuItems(response.data.products);
-    });
+    axios
+      .get("https://desolate-beach-43985.herokuapp.com/api/products")
+      .then((response) => {
+        setMenuItems(response.data.products);
+      });
   }, []);
 
   const addToCart = async (itemId) => {
@@ -43,6 +45,7 @@ const MenuPage = () => {
   );
 
   let menuList = itemsInCategories.map((item) => {
+    debugger;
     return <MenuItem key={item.id} item={item} addToCart={addToCart} />;
   });
 

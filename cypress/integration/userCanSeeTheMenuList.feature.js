@@ -8,7 +8,7 @@ describe("User can see menu", () => {
   });
  
   describe("User can see menu-items by category", () => {
-    it("is expected to display the content of starter-menu", () => {
+    it.only("is expected to display the content of starter-menu", () => {
       cy.get("[data-cy=starter-tab]").click();
       cy.get("[data-cy=menu-section]").children().should("have.length", 2);
       cy.get("[data-cy=item-1]").within(() => {
