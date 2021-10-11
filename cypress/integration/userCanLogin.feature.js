@@ -20,7 +20,7 @@ describe("User can enter user data", () => {
     });
 
     it("is expected that the login status changes", () => {
-      cy.get("[data-cy=login-status]").should("contain", "Logged out");
+      cy.get("[data-cy=login-status]").should("contain", "Logged In");
     });
 
     // it("is expected to bring you to the Menu Page", () => {
