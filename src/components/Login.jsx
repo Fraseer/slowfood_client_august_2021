@@ -26,7 +26,7 @@ const Login = () => {
   const handleSubmit = async () => {
     await axios
       .post(
-        "https://slowfood2021.heroku.com/api/auth/sign_in/?email=example@email.com&password=password"
+        "https://desolate-beach-43985.herokuapp.com//api/auth/sign_in/?email=example@email.com&password=password"
       )
       .then((response) => {
         setLoginStatus(response.data.successes);
