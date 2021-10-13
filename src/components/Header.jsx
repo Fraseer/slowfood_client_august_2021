@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+  const { authenticated, currentUser } = useSelector((state) => state);
   const [activeItem, setActiveItem] = useState();
-
+  const dispatch = useDispatch();
   return (
     <Menu inverted data-cy="header">
       <Menu.Item
@@ -30,17 +32,43 @@ const Header = () => {
         Menu
       </Menu.Item>
       <Menu.Item
-        position="right"
-        id="signup"
-        name="signup"
+        id="about"
+        name="about"
         as={Link}
-        to={{ pathname: "/signup" }}
-        data-cy="btn-signup"
-        active={activeItem === "signup"}
+        to={{ pathname: "/About" }}
+        active={activeItem === "about"}
         onClick={setActiveItem}
+        data-cy="about"
       >
-        Sign up
+        About
       </Menu.Item>
+      {!authenticated ? (
+        <React.Fragment>
+          <Menu.Item
+            data-cy="btn-login"
+            active={activeItem === "signup"}
+            onClick={() => dispatch({ type: "TOGGLE_LOGIN_UI_VISIBILITY" })}
+          >
+            Login
+          </Menu.Item>
+
+          <Menu.Item
+            position="right"
+            id="signup"
+            name="signup"
+            as={Link}
+            to={{ pathname: "/signup" }}
+            data-cy="btn-signup"
+            active={activeItem === "signup"}
+            onClick={setActiveItem}
+          >
+            Sign up
+          </Menu.Item>
+        </React.Fragment>
+      ) : 
+      
+        <Menu.Item data-cy="user_name">logged in as: {currentUser.email}</Menu.Item>
+      }
     </Menu>
   );
 };

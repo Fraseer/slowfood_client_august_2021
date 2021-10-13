@@ -22,18 +22,20 @@ const MenuPage = () => {
 
   const addToCart = async (itemId) => {
     let flashMessage;
-    const method = cart ? "PUT" : "POST";
+    const apiUrl = "https://desolate-beach-43985.herokuapp.com/api";
     try {
       const response = await axios({
-        method: method,
-        url: "https://desolate-beach-43985.herokuapp.com/api/carts",
+        method: cart ? "PUT" : "POST",
+        url: cart ? `${apiUrl}/carts/${cart.id}` : `${apiUrl}/carts`,
         data: { product_id: itemId },
+        headers: JSON.parse(localStorage.getItem("J-tockAuth-Storage")),
       });
       const responseMessage = response.data.message;
       const product = response.data.cart.products.id === itemId;
       flashMessage = responseMessage.replace(`This product ${product.name}`);
       setCart(response.data.cart);
     } catch (error) {
+      debugger;
       flashMessage = error.response.data.message;
     } finally {
       setFlashMessage(flashMessage);
